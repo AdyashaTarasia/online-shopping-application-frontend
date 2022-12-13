@@ -1,0 +1,35 @@
+<h1 align="center" class="display-4 mb-5">Search Product</h1>
+<div style="width:80%; margin: 25px auto">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control fs-4" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" [(ngModel)]="search">
+    <button class="btn btn-primary btn-lg" type="button" id="button-addon2" (click) = "onSearch()">Search</button>
+    <button class="btn btn-secondary btn-lg" type="button" id="button-addon3" (click) = "onCancel()">Cancel</button>
+  </div>
+  <div *ngIf="isProductFound" class="row card-deck text-center">
+    <div class="col-lg-4 ">
+      <div class="card mb-4"  >
+        <div class="card-body">
+          <h4 class="card-title ">{{productInfo.name}}</h4>
+          <div class="text-left">
+            <p class="card-test"><strong>Description: </strong>{{productInfo.description}}</p>
+            <p class="card-text"><strong>Price: </strong>{{productInfo.price | currency : 'INR'}}</p>
+            <p class="card-text"><strong>Stock: </strong>{{productInfo.quantity}}</p>
+            <p class="card-text"><strong>Features: </strong>{{productInfo.features}}</p>
+          </div>
+          <br>
+          <a routerLink="/product/{{productInfo.name}}" *ngIf="productInfo.quantity != 0; else offBlock"
+             class="btn btn-primary btn-lg"
+          >Get It!</a>
+          <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p *ngIf = "!isProductFound && isProductSearchEntered" class="text-danger fw-light fs-3">No product found. Please try searching with another name.</p>
+  </div>
+  <div>
+    <p *ngIf = "!isProductFound && !isProductSearchEntered" class="text-muted fw-light fs-3">Please search using a product name.</p>
+  </div>
+</div>
+

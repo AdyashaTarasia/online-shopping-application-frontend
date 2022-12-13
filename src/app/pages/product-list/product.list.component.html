@@ -1,0 +1,38 @@
+<h1 align="center" class="display-4 ">Products</h1>
+<table id="table" class="table table-striped text-center" style="width:100%;">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Features</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let productInfo of productData">
+        <td class="align-middle">{{productInfo.name}}</td>
+        <td class="align-middle">{{productInfo.description}}</td>
+        <td class="align-middle">{{productInfo.features}}</td>
+        <td class="align-middle">{{productInfo.price | currency: 'INR'}}</td>
+        <td class="align-middle">{{productInfo.quantity}}</td>
+        <td class="align-middle">{{productInfo.status}}</td>
+        <td class="align-middle">
+            <a style="display: block" routerLink = "edit/{{productInfo.name}}">
+                Edit</a>
+
+            <a style="display: block"
+               (click)="remove(productInfo.name)" routerLink="/seller/product">
+                Remove</a>
+        </td>
+
+    </tbody>
+</table>
+<div class="row-mt-4">
+    <div class="col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+    <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1">
+        <button class="btn btn-primary" routerLink="add">Add New Product</button>
+    </div>
+</div>
+<!--<app-pagination [currentPage]="page"></app-pagination>-->

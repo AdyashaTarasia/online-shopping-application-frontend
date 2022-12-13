@@ -1,0 +1,89 @@
+<h1 align="center" class="display-4 mb-5">Add Product</h1>
+<div style="width:40%; margin: 25px auto">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <!--Name-->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input [(ngModel)]="product.name" type="text"
+                   class="form-control form-control-lg" #name
+                   id="name" name="name" required #name="ngModel" placeholder="Name">
+            <div *ngIf="name.invalid && (name.dirty ||name.touched)">
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+            </div>
+        </div>
+
+        <!--Description-->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input [(ngModel)]="product.description" type="text" class="form-control form-control-lg" id="description"
+                   #description="ngModel"
+                   name="description" placeholder="Description" required>
+               <div *ngIf="description.invalid && (description.dirty ||description.touched)">
+                    <div *ngIf="description.errors.required">
+                        Description is required.
+                    </div>
+                </div>
+        </div>
+       
+
+        <!--Price-->
+        <div class="form-group">
+            <label for="price">Price (₹)</label>
+            <input [(ngModel)]="product.price" type="number" class="form-control form-control-lg" id="price"
+                   #price="ngModel"
+                   name="price" placeholder="Price" required>
+              <div *ngIf="price.invalid && (price.dirty ||price.touched)">
+                    <div *ngIf="price.errors.required">
+                        Price is required.
+                    </div>
+                </div>
+        </div>
+
+        <!--Quantity-->
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input [(ngModel)]="product.quantity" type="number" class="form-control form-control-lg" id="quantity"
+                 #quantity="ngModel"
+                 name="quantity" placeholder="Quantity" required>
+            <div *ngIf="quantity.invalid && (quantity.dirty ||quantity.touched)">
+                  <div *ngIf="quantity.errors.required">
+                      Quantity is required.
+                  </div>
+              </div>
+      </div>
+
+      <!--Status-->
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="custom-select custom-select-lg " id="status" name="status" required #status = "ngModel"
+                [(ngModel)]="product.status">
+                <option [ngValue]=0>Available</option>
+                <option [ngValue]=1>Unavailable</option>
+        </select>
+        <div *ngIf="(status.touched)">
+            <div *ngIf="status.errors.required">
+                Status is required.
+            </div>
+        </div>
+    </div>
+    
+
+      <!--Features-->
+      <div class="form-group">
+        <label for="features">Features</label>
+        <input [(ngModel)]="product.features" type="text" class="form-control form-control-lg" id="features"
+               #features="ngModel"
+               name="features" placeholder="Features">
+      </div>
+
+      <!--Submit-->
+      <div class="form-group">
+        <button type="submit" [disabled]="!form.form.valid" class="btn btn-lg btn-primary btn-block">Add</button>
+    </div>
+    </form>
+    <div>
+      <button class="btn btn-lg btn-secondary btn-block" routerLink="/seller/product">Cancel</button>
+    </div>
+</div>

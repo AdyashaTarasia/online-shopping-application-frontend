@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #07335c;">
+    <a class="navbar-brand" [routerLink]="root">
+        <img src="/assets/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Online Shopping Application
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="navbar-nav ml-auto">
+
+            <ng-container *ngIf="currentUser; else noUser">
+                <a class="nav-item nav-link "> <!--routerLink="/profile">-->
+                    {{name}}
+                </a>
+                <a class="nav-item nav-link " (click)="logout()" routerLink="/login"> <!--[queryParams]="{logout: true}"-->
+                    Sign Out
+                </a>
+            </ng-container>
+            <ng-template #noUser>
+                <a class="nav-item nav-link " routerLink="/login">
+                    Sign In
+                </a>
+                <a class="nav-item nav-link " routerLink="/register">
+                    Sign Up
+                </a>
+            </ng-template>
+        </div>
+    </div>
+</nav>
